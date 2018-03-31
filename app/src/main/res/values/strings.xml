@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Overcome</string>
+    <string name="parent_control">Parent Control</string>
 </resources>
