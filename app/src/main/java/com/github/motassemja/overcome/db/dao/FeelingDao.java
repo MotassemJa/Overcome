@@ -9,6 +9,8 @@ import android.arch.persistence.room.Update;
 
 import com.github.motassemja.overcome.model.Feeling;
 
+import java.util.List;
+
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 /**
@@ -25,7 +27,10 @@ public interface FeelingDao {
     Feeling findFeeling(String id);
 
     @Insert(onConflict = REPLACE)
-    void insertFeelings(Feeling... feeling);
+    void insertFeeling(Feeling... feeling);
+
+    @Insert(onConflict = REPLACE)
+    void insertAllFeelings(List<Feeling> feelingList);
 
     @Update
     void updateFeeling(Feeling... feeling);

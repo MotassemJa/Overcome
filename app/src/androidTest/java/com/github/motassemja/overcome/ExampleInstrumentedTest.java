@@ -45,7 +45,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void writeAndReadFeeling() throws Exception {
         Feeling feeling = FeelingUtils.createFeeling("1", "Test");
-        mFeelingDao.insertFeelings(feeling);
+        mFeelingDao.insertFeeling(feeling);
         Feeling feeling1 = mFeelingDao.findFeeling("1");
     }
 
