@@ -20,7 +20,7 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface FeelingDao {
 
-    @Query("SELECT * FROM FEELING WHERE feelingID = :id")
+    @Query("SELECT * FROM Feeling WHERE feelingID = :id")
     LiveData<Feeling> findFeelingById(String id);
 
     @Query("SELECT * FROM Feeling WHERE feelingID like :id")

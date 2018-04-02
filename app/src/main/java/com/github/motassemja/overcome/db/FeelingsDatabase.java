@@ -48,7 +48,7 @@ public abstract class FeelingsDatabase extends RoomDatabase {
      * The SQLite database is only created when it's accessed for the first time.
      */
     private static FeelingsDatabase buildDatabase(final Context appContext,
-                                             final AppExecutors executors) {
+                                                  final AppExecutors executors) {
         return Room.databaseBuilder(appContext, FeelingsDatabase.class, DB_NAME)
                 .addCallback(new Callback() {
                     @Override
@@ -78,7 +78,7 @@ public abstract class FeelingsDatabase extends RoomDatabase {
         }
     }
 
-    private void setDatabaseCreated(){
+    private void setDatabaseCreated() {
         mIsDbCreated.postValue(true);
     }
 
