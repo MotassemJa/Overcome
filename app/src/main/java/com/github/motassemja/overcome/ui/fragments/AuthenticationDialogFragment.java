@@ -38,6 +38,12 @@ public class AuthenticationDialogFragment extends DialogFragment {
         // Required Constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style.DialogFragment);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,13 +51,12 @@ public class AuthenticationDialogFragment extends DialogFragment {
 
         ButterKnife.bind(this, view);
 
-        getDialog().setTitle(R.string.lbl_login);
-
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        getDialog().setTitle(R.string.lbl_login);
         mBtnCancel.setOnClickListener(view1 -> {
             dismiss();
         });

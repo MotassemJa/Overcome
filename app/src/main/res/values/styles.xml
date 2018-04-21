@@ -20,5 +20,10 @@
     <style name="PopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
+    
+    <style name="DialogFragment" parent="@android:style/Theme.Material.Light.Dialog">
+        <item name="titleTextColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 
 </resources>
