@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.motassemja.overcome.ui.fragments.AuthenticationDialogFragment;
 import com.github.motassemja.overcome.ui.fragments.ChooseLevelFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,10 +31,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_parent_control) {
-            // TODO handle parent control
+            showAuthenticationDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    private void showAuthenticationDialog() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        Fragment fragmentByTag = getSupportFragmentManager().findFragmentByTag(AuthenticationDialogFragment.TAG);
+
+        if (fragmentByTag != null) {
+            fragmentTransaction.remove(fragmentByTag);
+        }
+        fragmentTransaction.addToBackStack(null);
+
+        AuthenticationDialogFragment authenticationDialogFragment = new AuthenticationDialogFragment();
+        authenticationDialogFragment.show(fragmentTransaction, AuthenticationDialogFragment.TAG);
 
     }
 

@@ -6,4 +6,6 @@
     <string name="lbl_third_lvl">Find the Feeling</string>
     <string name="lbl_username">Username</string>
     <string name="lbl_password">Password</string>
+    <string name="lbl_login">Login</string>
+    <string name="lbl_cancel">Cancel</string>
 </resources>
