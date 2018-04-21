@@ -9,11 +9,16 @@
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="buttonStyle">@style/MyButtonStyle</item>
+        <item name="actionBarPopupTheme">@style/PopupTheme</item>
     </style>
 
     <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>
