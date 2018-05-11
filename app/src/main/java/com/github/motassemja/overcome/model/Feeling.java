@@ -1,6 +1,5 @@
 package com.github.motassemja.overcome.model;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -37,5 +36,12 @@ public class Feeling {
 
     public void setFeelingName(String feelingName) {
         this.feelingName = feelingName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null &&
+                obj instanceof Feeling &&
+                ((Feeling) obj).getFeelingID().equals(this.feelingID);
     }
 }

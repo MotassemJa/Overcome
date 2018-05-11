@@ -47,6 +47,7 @@ public class ExampleInstrumentedTest {
         Feeling feeling = FeelingUtils.createFeeling("1", "Test");
         mFeelingDao.insertFeeling(feeling);
         Feeling feeling1 = mFeelingDao.findFeeling("1");
+        assertEquals(feeling, feeling1);
     }
 
     @Test
