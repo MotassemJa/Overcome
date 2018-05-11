@@ -1,16 +1,21 @@
-package com.github.motassemja.overcome;
+package com.github.motassemja.overcome.ui.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.motassemja.overcome.R;
 import com.github.motassemja.overcome.ui.fragments.AuthenticationDialogFragment;
 import com.github.motassemja.overcome.ui.fragments.ChooseLevelFragment;
+import com.github.motassemja.overcome.ui.fragments.ParentControlPanelFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         }
         fragmentTransaction.addToBackStack(null);
 
-        AuthenticationDialogFragment authenticationDialogFragment = new AuthenticationDialogFragment();
+        AuthenticationDialogFragment authenticationDialogFragment = AuthenticationDialogFragment.newInstance(() ->
+                replaceFragment(new ParentControlPanelFragment(), true)
+        );
         authenticationDialogFragment.show(fragmentTransaction, AuthenticationDialogFragment.TAG);
 
     }
@@ -59,5 +66,6 @@ public class MainActivity extends AppCompatActivity {
             replace.addToBackStack(null);
         }
         replace.commit();
+        Log.d(TAG, "Fragment replaced!");
     }
 }

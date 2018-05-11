@@ -20,7 +20,15 @@ import butterknife.ButterKnife;
  */
 public class AuthenticationDialogFragment extends DialogFragment {
 
+    public interface AuthenticationDialogFragmentListener {
+        void onLoginButtonClicked();
+    }
+
     public static final String TAG = AuthenticationDialogFragment.class.getSimpleName();
+
+    private static final String TEST_USERNAME = "TEST";
+
+    private static final String TEST_PASSWORD = "123";
 
     @BindView(R.id.et_username)
     TextInputEditText mEtUsername;
@@ -34,8 +42,20 @@ public class AuthenticationDialogFragment extends DialogFragment {
     @BindView(R.id.btnCancel)
     AppCompatButton mBtnCancel;
 
+    private AuthenticationDialogFragmentListener mListener;
+
     public AuthenticationDialogFragment() {
         // Required Constructor
+    }
+
+    private void setListener(AuthenticationDialogFragmentListener listener) {
+        this.mListener = listener;
+    }
+
+    public static AuthenticationDialogFragment newInstance(@NonNull AuthenticationDialogFragmentListener listener) {
+        AuthenticationDialogFragment fragment = new AuthenticationDialogFragment();
+        fragment.setListener(listener);
+        return fragment;
     }
 
     @Override
@@ -59,6 +79,16 @@ public class AuthenticationDialogFragment extends DialogFragment {
         getDialog().setTitle(R.string.lbl_login);
         mBtnCancel.setOnClickListener(view1 -> {
             dismiss();
+        });
+
+        mBtnLogin.setOnClickListener(view1 -> {
+            String username = mEtUsername.getText().toString();
+            String password = mEtPassword.getText().toString();
+
+            if (username.equalsIgnoreCase(TEST_USERNAME) && password.equals(TEST_PASSWORD)) {
+                dismiss();
+                mListener.onLoginButtonClicked();
+            }
         });
     }
 }
