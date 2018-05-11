@@ -23,6 +23,9 @@ public interface FeelingDao {
     @Query("SELECT * FROM Feeling WHERE feelingID = :id")
     LiveData<Feeling> findFeelingById(String id);
 
+    @Query("SELECT * FROM Feeling")
+    LiveData<List<Feeling>> getAllFeelings();
+
     @Query("SELECT * FROM Feeling WHERE feelingID like :id")
     Feeling findFeeling(String id);
 

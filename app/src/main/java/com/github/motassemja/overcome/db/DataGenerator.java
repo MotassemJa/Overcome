@@ -21,7 +21,7 @@ public class DataGenerator {
     public static List<Feeling> generateFeelings() {
         List<Feeling> feelings = new ArrayList<>();
         for (int i = 0; i < ID.length; i++) {
-            feelings.add(new Feeling(ID[i], NAME[i]));
+            feelings.add(new Feeling(NAME[i]));
         }
         return feelings;
     }

@@ -1,15 +1,25 @@
 package com.github.motassemja.overcome.ui.fragments;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.motassemja.overcome.AppExecutors;
 import com.github.motassemja.overcome.R;
+import com.github.motassemja.overcome.adapters.FeelingsAdapter;
+import com.github.motassemja.overcome.model.Feeling;
+import com.github.motassemja.overcome.viewmodel.FeelingViewModel;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -18,6 +28,16 @@ import butterknife.ButterKnife;
 public class ParentControlPanelFragment extends Fragment {
 
     public static final String TAG = ParentControlPanelFragment.class.getSimpleName();
+
+    @BindView(R.id.rv_feelings)
+    RecyclerView mRvFeelings;
+
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+
+    private FeelingsAdapter mAdapter;
+
+    private FeelingViewModel mFeelingViewModel;
 
     public ParentControlPanelFragment() {
 
@@ -30,6 +50,24 @@ public class ParentControlPanelFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_parent_control_panel);
+
+        mAdapter = new FeelingsAdapter(getActivity());
+
+        mFeelingViewModel = ViewModelProviders.of(getActivity()).get(FeelingViewModel.class);
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mRvFeelings.setAdapter(mAdapter);
+        mRvFeelings.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mFeelingViewModel.getAllFeelings().observe(this, feelingList -> mAdapter.setFeelings(feelingList));
+
+        mFab.setOnClickListener(view1 -> {
+            mFeelingViewModel.insert(new Feeling("Test"), new AppExecutors());
+        });
     }
 }

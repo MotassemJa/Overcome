@@ -8,6 +8,6 @@ import com.github.motassemja.overcome.model.Feeling;
 public class FeelingUtils {
 
     public static Feeling createFeeling(String id, String name) {
-        return new Feeling(id, name);
+        return new Feeling(name);
     }
 }

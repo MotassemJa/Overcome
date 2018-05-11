@@ -20,7 +20,7 @@ import java.util.List;
  * Copyright github.com/MotassemJa on 4/1/2018.
  */
 
-@Database(entities = {Feeling.class}, version = 1)
+@Database(entities = {Feeling.class}, version = 1, exportSchema = false)
 public abstract class FeelingsDatabase extends RoomDatabase {
 
     private static FeelingsDatabase sInstance;
@@ -54,7 +54,7 @@ public abstract class FeelingsDatabase extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                        executors.diskIO().execute(() -> {
+                        /*executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation
                             addDelay();
                             // Generate the data for pre-population
@@ -64,7 +64,7 @@ public abstract class FeelingsDatabase extends RoomDatabase {
                             insertData(database, products);
                             // notify that the database was created and it's ready to be used
                             database.setDatabaseCreated();
-                        });
+                        });*/
                     }
                 }).build();
     }

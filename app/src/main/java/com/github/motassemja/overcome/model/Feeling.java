@@ -11,22 +11,21 @@ import android.support.annotation.NonNull;
 @Entity
 public class Feeling {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
-    private String feelingID;
+    private long feelingID;
 
     private String feelingName;
 
-    public Feeling(String feelingID, String feelingName) {
-        this.feelingID = feelingID;
+    public Feeling(String feelingName) {
         this.feelingName = feelingName;
     }
 
-    public String getFeelingID() {
+    public long getFeelingID() {
         return feelingID;
     }
 
-    public void setFeelingID(String feelingID) {
+    public void setFeelingID(long feelingID) {
         this.feelingID = feelingID;
     }
 
@@ -42,6 +41,6 @@ public class Feeling {
     public boolean equals(Object obj) {
         return obj != null &&
                 obj instanceof Feeling &&
-                ((Feeling) obj).getFeelingID().equals(this.feelingID);
+                ((Feeling) obj).getFeelingID() == this.feelingID;
     }
 }
