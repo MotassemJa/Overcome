@@ -2,10 +2,12 @@ package com.github.motassemja.overcome.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.motassemja.overcome.R;
@@ -20,11 +22,15 @@ public class FeelingsAdapter extends RecyclerView.Adapter {
 
     class FeelingViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvID, tvName;
+        private Button btnEditImg;
+        private AppCompatImageView imgFeeling;
 
         private FeelingViewHolder(View view) {
             super(view);
             tvID = view.findViewById(R.id.tv_feeling_id);
             tvName = view.findViewById(R.id.tv_feeling_name);
+            btnEditImg = view.findViewById(R.id.btn_edit_img);
+            imgFeeling = view.findViewById(R.id.img_feeling);
         }
     }
 
