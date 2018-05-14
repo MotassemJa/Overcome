@@ -10,4 +10,6 @@
     <string name="lbl_cancel">Cancel</string>
     <string name="title_parent_control_panel">Control Panel</string>
     <string name="lbl_edit">Edit</string>
+    <string name="lbl_feeling_name">Feeling name</string>
+    <string name="lbl_add_image">Add Image</string>
 </resources>

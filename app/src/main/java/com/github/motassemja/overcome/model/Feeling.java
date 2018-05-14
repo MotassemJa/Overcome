@@ -1,5 +1,6 @@
 package com.github.motassemja.overcome.model;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -17,8 +18,12 @@ public class Feeling {
 
     private String feelingName;
 
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] feelingImage;
+
     public Feeling(String feelingName) {
         this.feelingName = feelingName;
+        feelingImage = null;
     }
 
     public long getFeelingID() {
@@ -35,6 +40,14 @@ public class Feeling {
 
     public void setFeelingName(String feelingName) {
         this.feelingName = feelingName;
+    }
+
+    public byte[] getFeelingImage() {
+        return feelingImage;
+    }
+
+    public void setFeelingImage(byte[] feelingImage) {
+        this.feelingImage = feelingImage;
     }
 
     @Override
