@@ -1,6 +1,8 @@
 package com.github.motassemja.overcome.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +32,7 @@ public class FeelingsAdapter extends RecyclerView.Adapter {
             tvID = view.findViewById(R.id.tv_feeling_id);
             tvName = view.findViewById(R.id.tv_feeling_name);
             btnEditImg = view.findViewById(R.id.btn_edit_img);
-            imgFeeling = view.findViewById(R.id.img_feeling);
+            imgFeeling = view.findViewById(R.id.img_new_feeling);
         }
     }
 
@@ -56,6 +58,12 @@ public class FeelingsAdapter extends RecyclerView.Adapter {
             Feeling feeling = mFeelings.get(position);
             feelingViewHolder.tvName.setText(feeling.getFeelingName());
             feelingViewHolder.tvID.setText(String.valueOf(feeling.getFeelingID()));
+            try {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(feeling.getFeelingImage(), 0, feeling.getFeelingImage().length);
+                feelingViewHolder.imgFeeling.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             feelingViewHolder.tvID.setText("N/A");
             feelingViewHolder.tvName.setText("N/A");
