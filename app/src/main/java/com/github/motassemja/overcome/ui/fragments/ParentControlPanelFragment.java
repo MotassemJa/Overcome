@@ -1,6 +1,7 @@
 package com.github.motassemja.overcome.ui.fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,10 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.motassemja.overcome.AppExecutors;
 import com.github.motassemja.overcome.R;
 import com.github.motassemja.overcome.adapters.FeelingsAdapter;
-import com.github.motassemja.overcome.model.Feeling;
 import com.github.motassemja.overcome.viewmodel.FeelingViewModel;
 
 import butterknife.BindView;
@@ -26,6 +25,10 @@ import butterknife.ButterKnife;
  * Copyright github.com/MotassemJa on 4/21/2018.
  */
 public class ParentControlPanelFragment extends Fragment {
+
+    public interface ParentControlPanelInteractor {
+        void onFabClicked();
+    }
 
     public static final String TAG = ParentControlPanelFragment.class.getSimpleName();
 
@@ -39,8 +42,21 @@ public class ParentControlPanelFragment extends Fragment {
 
     private FeelingViewModel mFeelingViewModel;
 
+    private ParentControlPanelInteractor mListener;
+
     public ParentControlPanelFragment() {
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mListener = (ParentControlPanelInteractor) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Must implement listener");
+        }
     }
 
     @Nullable
@@ -67,7 +83,8 @@ public class ParentControlPanelFragment extends Fragment {
         mFeelingViewModel.getAllFeelings().observe(this, feelingList -> mAdapter.setFeelings(feelingList));
 
         mFab.setOnClickListener(view1 -> {
-            mFeelingViewModel.insert(new Feeling("Test"), new AppExecutors());
+            // mFeelingViewModel.insert(new Feeling("Test"), new AppExecutors());
+            if (mListener != null) mListener.onFabClicked();
         });
     }
 }

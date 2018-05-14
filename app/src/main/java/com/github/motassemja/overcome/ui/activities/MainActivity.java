@@ -9,11 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.motassemja.overcome.R;
+import com.github.motassemja.overcome.ui.fragments.AddFeelingFragment;
 import com.github.motassemja.overcome.ui.fragments.AuthenticationDialogFragment;
 import com.github.motassemja.overcome.ui.fragments.ChooseLevelFragment;
 import com.github.motassemja.overcome.ui.fragments.ParentControlPanelFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ParentControlPanelFragment.ParentControlPanelInteractor {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -67,5 +68,10 @@ public class MainActivity extends AppCompatActivity {
         }
         replace.commit();
         Log.d(TAG, "Fragment replaced!");
+    }
+
+    @Override
+    public void onFabClicked() {
+        replaceFragment(new AddFeelingFragment(), true);
     }
 }
