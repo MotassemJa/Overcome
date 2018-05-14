@@ -12,4 +12,6 @@
     <string name="lbl_edit">Edit</string>
     <string name="lbl_feeling_name">Feeling name</string>
     <string name="lbl_add_image">Add Image</string>
+    <string name="title_add_new_feeling">Add New Feeling</string>
+    <string name="lbl_save">Save</string>
 </resources>
