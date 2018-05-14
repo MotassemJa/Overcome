@@ -14,4 +14,6 @@
     <string name="lbl_add_image">Add Image</string>
     <string name="title_add_new_feeling">Add New Feeling</string>
     <string name="lbl_save">Save</string>
+    <string name="dialog_msg_add_img">Please choose an option</string>
+    <string name="title_dialog_add_img">Add Image</string>
 </resources>

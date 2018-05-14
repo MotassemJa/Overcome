@@ -1,5 +1,6 @@
 package com.github.motassemja.overcome.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.github.motassemja.overcome.R;
 
@@ -39,8 +39,21 @@ public class AddFeelingFragment extends Fragment {
     @BindView(R.id.btn_save_feeling)
     Button mBtnSave;
 
+    private AddFeelingInteractor mListener;
+
     public AddFeelingFragment() {
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mListener = (AddFeelingInteractor) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Must implement listener");
+        }
     }
 
     @Nullable
@@ -53,5 +66,12 @@ public class AddFeelingFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_add_new_feeling);
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mBtnAddImage.setOnClickListener(view1 -> {
+            if (mListener != null) mListener.onTakePictureButtonClicked();
+        });
     }
 }
