@@ -25,6 +25,7 @@ import com.github.motassemja.overcome.model.Feeling;
 import com.github.motassemja.overcome.ui.fragments.AddFeelingFragment;
 import com.github.motassemja.overcome.ui.fragments.AuthenticationDialogFragment;
 import com.github.motassemja.overcome.ui.fragments.ChooseLevelFragment;
+import com.github.motassemja.overcome.ui.fragments.FirstLevelFragment;
 import com.github.motassemja.overcome.ui.fragments.ParentControlPanelFragment;
 import com.github.motassemja.overcome.viewmodel.SingleFeelingViewModel;
 
@@ -34,7 +35,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements ParentControlPanelFragment.ParentControlPanelInteractor
-        , AddFeelingFragment.AddFeelingInteractor {
+        , AddFeelingFragment.AddFeelingInteractor
+        , ChooseLevelFragment.ChooseLevelInteractor {
 
     /**
      * For debugging
@@ -87,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
 
     }
 
+    /**
+     * Builds and shows the authentication dialog fragment
+     */
     private void showAuthenticationDialog() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
@@ -104,6 +109,12 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
 
     }
 
+    /**
+     * Replaces current fragment
+     *
+     * @param fragment       to show
+     * @param addToBackStack true if should be added to back stack
+     */
     public void replaceFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction replace = getSupportFragmentManager().beginTransaction().replace(R.id.replace_me, fragment);
         if (addToBackStack) {
@@ -125,11 +136,14 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQ_CODE_CHOOSE_PICTURE);*/
 
-        checkRquiredPermissions();
+        checkRequiredPermissions();
 
     }
 
-    private void checkRquiredPermissions() {
+    /**
+     * Checks all required permissions by the app
+     */
+    private void checkRequiredPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -141,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
         }
     }
 
+    /**
+     * Builds and shows a dialog to choose an action
+     */
     private void buildChooserDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -160,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
 
         alertDialog.show();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -209,5 +225,20 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
                     }
             }
         }
+    }
+
+    @Override
+    public void onFirstLevelChosen() {
+        replaceFragment(new FirstLevelFragment(), true);
+    }
+
+    @Override
+    public void onSecondLevelChosen() {
+
+    }
+
+    @Override
+    public void onThirdLevelChosen() {
+
     }
 }
