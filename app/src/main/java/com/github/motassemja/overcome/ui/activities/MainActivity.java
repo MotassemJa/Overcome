@@ -27,6 +27,7 @@ import com.github.motassemja.overcome.ui.fragments.AuthenticationDialogFragment;
 import com.github.motassemja.overcome.ui.fragments.ChooseLevelFragment;
 import com.github.motassemja.overcome.ui.fragments.FirstLevelFragment;
 import com.github.motassemja.overcome.ui.fragments.ParentControlPanelFragment;
+import com.github.motassemja.overcome.ui.fragments.SecondLevelFragment;
 import com.github.motassemja.overcome.viewmodel.SingleFeelingViewModel;
 
 import java.io.ByteArrayOutputStream;
@@ -234,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
 
     @Override
     public void onSecondLevelChosen() {
-
+        replaceFragment(new SecondLevelFragment(), true);
     }
 
     @Override

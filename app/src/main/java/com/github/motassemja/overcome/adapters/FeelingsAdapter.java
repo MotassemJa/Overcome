@@ -30,7 +30,7 @@ public class FeelingsAdapter extends RecyclerView.Adapter {
         private FeelingViewHolder(View view) {
             super(view);
             tvID = view.findViewById(R.id.tv_feeling_id);
-            tvName = view.findViewById(R.id.tv_feeling_name);
+            tvName = view.findViewById(R.id.tv_feeling_to_find);
             btnEditImg = view.findViewById(R.id.btn_edit_img);
             imgFeeling = view.findViewById(R.id.img_new_feeling);
         }
