@@ -16,7 +16,7 @@ After defining feelings by the parents, a child can start the practice. The proc
 The app requires no internet connection to allow users to add pictures of their own without any privacy concerns.
 
 ## Demo 
-**TO BE ADDED**
+![Demo](screenshots/Overcom.gif?raw=true=50x10)
 
 ## Important Info
 This project represent my application in the Europan Youth Award 2018
