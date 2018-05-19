@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">overcome</string>
+    <string name="app_name">Overcome</string>
+    <string name="parent_control">Parent Control</string>
+    <string name="lbl_first_lvl">Get to know</string>
+    <string name="lbl_second_lvl">Practice</string>
+    <string name="lbl_third_lvl">Find the Feeling</string>
+    <string name="lbl_username">Username</string>
+    <string name="lbl_password">Password</string>
+    <string name="lbl_login">Login</string>
+    <string name="lbl_cancel">Cancel</string>
+    <string name="title_parent_control_panel">Control Panel</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="lbl_feeling_name">Feeling name</string>
+    <string name="lbl_add_image">Add Image</string>
+    <string name="title_add_new_feeling">Add New Feeling</string>
+    <string name="lbl_save">Save</string>
+    <string name="dialog_msg_add_img">Please choose an option</string>
+    <string name="title_dialog_add_img">Add Image</string>
 </resources>
