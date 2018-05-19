@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ import com.github.motassemja.overcome.ui.fragments.SecondLevelFragment;
 import com.github.motassemja.overcome.viewmodel.SingleFeelingViewModel;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -223,6 +225,20 @@ public class MainActivity extends AppCompatActivity implements ParentControlPane
                         feeling.setFeelingImage(byteArray);
                         viewModel.getFeeling().setValue(feeling);
                         break;
+                    }
+                case REQ_CODE_CHOOSE_PICTURE:
+                    Uri uri = data.getData();
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] byteArray = stream.toByteArray();
+                        Feeling feeling = new Feeling("");
+                        feeling.setFeelingImage(byteArray);
+                        viewModel.getFeeling().setValue(feeling);
+                        break;
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
             }
         }
