@@ -1,5 +1,8 @@
 package com.github.motassemja.overcome.ui.fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +15,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.github.motassemja.overcome.R;
+import com.github.motassemja.overcome.model.Feeling;
+import com.github.motassemja.overcome.viewmodel.FeelingViewModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +43,8 @@ public class SecondLevelFragment extends Fragment {
     @BindView(R.id.rb_choice_2)
     RadioButton mRbSecondChoice;
 
+    private FeelingViewModel mFeelingViewModel;
+
     public SecondLevelFragment() {
         // Required Public Constructor
     }
@@ -46,6 +55,8 @@ public class SecondLevelFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_second_level, container, false);
 
         ButterKnife.bind(this, view);
+
+        mFeelingViewModel = ViewModelProviders.of(getActivity()).get(FeelingViewModel.class);
 
         return view;
     }
@@ -59,5 +70,24 @@ public class SecondLevelFragment extends Fragment {
         mRbSecondChoice.setOnClickListener(view12 -> {
             mRbFirstChoice.setChecked(!mRbSecondChoice.isChecked());
         });
+
+        mFeelingViewModel.getAllFeelings().observe(this, new Observer<List<Feeling>>() {
+            @Override
+            public void onChanged(@Nullable List<Feeling> feelings) {
+                // FIXME random + check for nulls
+                if (feelings != null && feelings.size() > 1) {
+                    Feeling first = feelings.get(0);
+                    mTvFeelingName.setText(first.getFeelingName());
+                    mRbSecondChoice.setText(first.getFeelingName());
+                    mImgSecondChoice.setImageBitmap(BitmapFactory.decodeByteArray(first.getFeelingImage(), 0, first.getFeelingImage().length));
+
+                    Feeling second = feelings.get(1);
+                    mRbFirstChoice.setText(second.getFeelingName());
+                    mImgFirstChoice.setImageBitmap(BitmapFactory.decodeByteArray(second.getFeelingImage(), 0, second.getFeelingImage().length));
+                }
+            }
+        });
+
+
     }
 }
